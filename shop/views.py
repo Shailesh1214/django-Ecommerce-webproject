@@ -25,18 +25,18 @@ def about(request):
     return render(request,'shop/about.html')
 
 def contact(request):
-    return HttpResponse("we are at contactUs")
+    return render(request,"shop/contact.html")
 
 def tracker(request):
-    return HttpResponse("We are at Tracking status")
+    return render(request,"shop/tracker.html")
 
 def search(request):
-    return HttpResponse("we are at search")
+    return render(request,"shop/search.html")
 
 def productview(request):
-    return HttpResponse("we are at productview")
+    return render(request,"shop/prodview.html")
 
 def checkout(request):
-    return HttpResponse("we are at checkout")
+    return render(request,"shop/checkout.html")
 
     
