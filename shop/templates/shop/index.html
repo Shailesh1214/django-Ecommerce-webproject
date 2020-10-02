@@ -1,4 +1,3 @@
-
 {% extends 'shop/basic.html' %}
 {% block css %}
 .col-md-3
@@ -106,31 +105,34 @@ padding-right: 0;
 
   });
   //Add Popover to cart
-$('#popcart').popover();
-updatePopover(cart);
+  $('#popcart').popover();
+  updatePopover(cart);
 
-function updatePopover(cart) {
-console.log('we are inside updatePopover');
-var popStr = "";
-popStr = popStr + "<h5>Cart for your items in my shopping cart</h5><div class='mx-2 my-2'>";
-  var i = 1;
-  for (var item in cart) {
-  popStr = popStr + "<b>" + i + "</b>.";
-  popStr = popStr + document.getElementById('name' + item).innerHTML.slice(0, 19) + "... Qty: " + cart[item] + '<br>';
-  i = i + 1;
+  function updatePopover(cart) {
+    console.log('we are inside updatePopover');
+    var popStr = "";
+    popStr = popStr + "<h5>Cart for your items in my shopping cart</h5><div class='mx-2 my-2'>";
+    var i = 1;
+    for (var item in cart) {
+      popStr = popStr + "<b>" + i + "</b>.";
+      popStr = popStr + document.getElementById('name' + item).innerHTML.slice(0, 19) + "... Qty: " + cart[item] +
+        '<br>';
+      i = i + 1;
+    }
+    popStr = popStr + "</div>"
+    console.log(popStr);
+    document.getElementById('popcart').setAttribute('data-content', popStr);
+    $('#popcart').popover('show');
   }
-  popStr = popStr + "</div>"
-  console.log(popStr);
-  document.getElementById('popcart').setAttribute('data-content', popStr);
-  $('#popcart').popover('show');
-}
   //update cart
   function updateCart(cart) {
+    var sum = 0;
     for (var item in cart) {
+      sum = sum + cart[item];
       document.getElementById('div' + item).innerHTML = "<button id='minus" + item +
         "' class='btn btn-primary minus'>-</button> <span id='val" + item + "''>" + cart[item] +
         "</span> <button id='plus" + item + "' class='btn btn-primary plus'> + </button>";
-    }
+      }
     localStorage.setItem('cart', JSON.stringify(cart));
     document.getElementById('cart').innerHTML = Object.keys(cart).length;
     console.log(cart);
