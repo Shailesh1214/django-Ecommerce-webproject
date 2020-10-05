@@ -7,7 +7,6 @@ import json
 # Create your views here.
 from django.http import HttpResponse
 
-
 def index(request):
     allProds = []
     catprods = Product.objects.values('category', 'id')
